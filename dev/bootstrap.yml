@@ -1,5 +1,24 @@
 
+## 注册到Eureka Server cluster
+eureka:
+  client:
+    ## 是否将自己注册到Eureka服务中，默认为true(高可用设置为true)
+    registerWithEureka: true
+    ## 是否从Eureka中获取注册信息，默认为true
+    fetchRegistry: true
+    service-url:
+      ## 服务注册中心的地址serviceUrl
+      ## 指向配置中心的地址，多个以逗号分隔，http://hadoop2:8000/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/
 
+  instance:
+    preferIpAddress: true
+    ## 实例ID
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-expiration-duration-in-seconds: 15
+    #lease-renewal-interval-in-seconds: 5
+    ## hostname: ${spring.cloud.client.ipAddress}
+    #hostname: localhost
 
 
 
